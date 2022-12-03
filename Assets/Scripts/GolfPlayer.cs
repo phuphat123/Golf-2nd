@@ -39,8 +39,18 @@ public class GolfPlayer : MonoBehaviour
        
 
     }
+    // collision trigger when ball enters radius of power-up
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("SpeedB"))
+        {
+            Debug.Log("picked up");
+            other.gameObject.SetActive(false);
+        }
+    }
 
-    private void DrawLine(Vector3 worldPoint)
+
+private void DrawLine(Vector3 worldPoint)
     {
         Vector3[] positions = { transform.position, worldPoint };
         lineRenderer.SetPositions(positions);
