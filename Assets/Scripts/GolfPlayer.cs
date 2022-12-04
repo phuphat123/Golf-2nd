@@ -47,10 +47,14 @@ public class GolfPlayer : MonoBehaviour
             Debug.Log("picked up");
             other.gameObject.SetActive(false); // disables game object containing the tag
         }
+        if (other.gameObject.CompareTag("Hole"))
+        {
+            Debug.Log("Hole potted! Proceed to Next level!");
+
+        }
     }
-
-
-private void DrawLine(Vector3 worldPoint)
+    
+    private void DrawLine(Vector3 worldPoint)
     {
         Vector3[] positions = { transform.position, worldPoint };
         lineRenderer.SetPositions(positions);
