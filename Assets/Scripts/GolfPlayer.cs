@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -16,28 +17,40 @@ public class GolfPlayer : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         ToggleAim = false;
         lineRenderer.enabled = false;
-        
-
+        rb.maxAngularVelocity = 1000;
     }
-
 
 
     private void Update()
-    { 
-        if (rb.velocity.magnitude < 0.21f) {
+    {
+        if (rb.velocity.magnitude < 0.2f)
+        {
+            ProcessAim();
+        }
+        else {
+            rb.velocity = rb.velocity * 0.9995f;
+        }
+    }
+
+
+    private void FixedUpdate()
+    {
+        if (rb.velocity.magnitude < 0.2f)
+        {
             Stop();
         }
-        ProcessAim();
         
+        
+
     }
+
+
+    
 
     private void Stop() {
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
-        
-       
-
     }
     // collision trigger 
     void OnTriggerEnter(Collider other)
@@ -53,18 +66,19 @@ public class GolfPlayer : MonoBehaviour
 
         }
     }
-    
-    private void DrawLine(Vector3 worldPoint)
-    {
-        Vector3[] positions = { transform.position, worldPoint };
-        lineRenderer.SetPositions(positions);
-        lineRenderer.enabled = true;
-    }
 
-    
+
+private void DrawLine(Vector3 worldPoint)
+    {     
+            Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);  
+            Vector3[] positions = { transform.position, horizontalWorldPoint };
+            lineRenderer.SetPositions(positions);
+            lineRenderer.enabled = true;
+    }
 
     private void OnMouseDown() //if mouse clicked on ball and if it's not moving, toggle the aim lines
     {
+        Debug.Log("Push");
         if (isIdle) {
             ToggleAim = true;
         }
@@ -80,26 +94,36 @@ public class GolfPlayer : MonoBehaviour
         {
             return;
         }
+
+        
         DrawLine(worldPoint.Value);
 
         if (Input.GetMouseButtonUp(0)) {
             Shoot(worldPoint.Value);
-            
+            Debug.Log("Release");
         }
 
     }
 
     private void Shoot(Vector3 worldPoint) {
-        ToggleAim = false;
+
         
+
+
+        ToggleAim = false;
+        isIdle = false;
         lineRenderer.enabled = false;
         Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
-        Vector3 direction = (-horizontalWorldPoint - -transform.position).normalized;
-        float strength = Vector3.Distance(transform.position, horizontalWorldPoint);
+        Vector3 direction = (-horizontalWorldPoint - -transform.position).normalized;   // direction vector
+        float strength = Vector3.Distance(transform.position, horizontalWorldPoint);    //if the line is longer, the more strength
+
+        
 
         rb.AddForce(direction * strength * shotPower);
-        Debug.Log("Speed: " + rb.velocity.magnitude);
+        Debug.Log(rb.velocity.magnitude);
 
+        
+       
     }
 
     private Vector3? CastMouseClickRay() {
