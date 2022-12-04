@@ -21,7 +21,7 @@ public class Bounce : MonoBehaviour
     {
         index += Time.deltaTime;
         y = Mathf.Abs(amplitudeY * Mathf.Sin(index));
-        Debug.Log(y);
+        
         this.transform.position = new Vector3(transform.position.x, y + yPos, transform.position.z);
 
 
