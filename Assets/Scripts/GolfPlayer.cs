@@ -39,13 +39,13 @@ public class GolfPlayer : MonoBehaviour
        
 
     }
-    // collision trigger when ball enters radius of power-up
+    // collision trigger 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("SpeedB"))
+        if (other.gameObject.CompareTag("SpeedB")) // checks if tag of game objects for SpeedB
         {
             Debug.Log("picked up");
-            other.gameObject.SetActive(false);
+            other.gameObject.SetActive(false); // disables game object containing the tag
         }
     }
 
