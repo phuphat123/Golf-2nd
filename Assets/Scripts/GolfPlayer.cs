@@ -17,6 +17,10 @@ public class GolfPlayer : MonoBehaviour
     private float boostTimer;
     private bool boosting;
 
+    public float rotationSpeed = 50.0f;
+
+
+
 
     private Vector3 prev;
 
@@ -38,7 +42,8 @@ public class GolfPlayer : MonoBehaviour
         {
             ProcessAim();
         }
-        else {
+        else
+        {
             rb.velocity = rb.velocity * 0.9995f;
         }
 
@@ -48,7 +53,11 @@ public class GolfPlayer : MonoBehaviour
             Stop();
         }
 
+        
+
+
     }
+
 
 
     private void FixedUpdate()
