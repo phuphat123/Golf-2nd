@@ -5,7 +5,7 @@ using UnityEngine;
 public class TeleporterOne : MonoBehaviour
 {
     [SerializeField] private Transform player;
-    [SerializeField] private Transform TpPoint1;
+    [SerializeField] private Transform TpPoint;
     public GameObject ball;
 
     private void OnTriggerEnter(Collider other)
@@ -13,7 +13,7 @@ public class TeleporterOne : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
 
-            player.transform.position = TpPoint1.transform.position;
+            player.transform.position = TpPoint.transform.position;
             ball.GetComponent<GolfPlayer>().Stop();
         }
 
