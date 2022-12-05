@@ -5,20 +5,23 @@ using UnityEngine;
 
 public class SizeUp : MonoBehaviour
 {
-    public GameObject pickupEffect;
+    
     public float multiplier = 2f;
+    public float duration = 3f;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Pickup(other);
+            StartCoroutine(Pickup(other));
         }
     }
-    private void Pickup(Collider player)
+    IEnumerator Pickup(Collider player)
     {
-        Instantiate(pickupEffect, transform.position, transform.rotation);
-
-        player.transform.localScale *= multiplier;
-        
+        player.transform.localScale *= multiplier; // increase size of player by 2
+        GetComponent<MeshRenderer>().enabled = false;
+        GetComponent<Collider>().enabled = false;
+        yield return new WaitForSeconds(duration); // wait for 3 seconds 
+        player.transform.localScale /= multiplier; // return the size of player to normal
+        Destroy(gameObject);
     }
 }

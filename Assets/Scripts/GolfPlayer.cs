@@ -86,18 +86,7 @@ public class GolfPlayer : MonoBehaviour
     // collision trigger 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("SpeedB")) // checks if tag of game objects for SpeedB
-        {
-            boosting = true;
-            speed = 10;
-            Debug.Log("picked up");
-            other.gameObject.SetActive(false); // disables speedb object
-        }
-        if (other.gameObject.CompareTag("Hole"))
-        {
-            Debug.Log("Hole potted! Proceed to Next level!");
-
-        }
+        
         if (other.gameObject.CompareTag("Ramp")) {
             onRamp = true;
             Debug.Log("onRamp true");
