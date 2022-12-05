@@ -1,6 +1,8 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
+using UnityEditor;
 using UnityEngine;
 
 public class GolfPlayer : MonoBehaviour
@@ -10,7 +12,10 @@ public class GolfPlayer : MonoBehaviour
     private bool isIdle;
     private bool ToggleAim;
     private Rigidbody rb;
-    
+
+    public float speed;
+    private float boostTimer;
+    private bool boosting;
 
     private void Awake()
     {
@@ -18,6 +23,9 @@ public class GolfPlayer : MonoBehaviour
         ToggleAim = false;
         lineRenderer.enabled = false;
         rb.maxAngularVelocity = 1000;
+        speed = 3;
+        boostTimer = 0;
+        boosting = false;
     }
 
 
@@ -30,6 +38,18 @@ public class GolfPlayer : MonoBehaviour
         else {
             rb.velocity = rb.velocity * 0.9995f;
         }
+
+        if (boosting)
+        {
+            boostTimer += Time.deltaTime;
+            if(boostTimer >= 3)
+            {
+                speed = 3;
+                boostTimer = 0;
+                boosting = false;
+            }
+        }
+        
     }
 
 
@@ -39,8 +59,6 @@ public class GolfPlayer : MonoBehaviour
         {
             Stop();
         }
-        
-        
 
     }
 
@@ -57,18 +75,21 @@ public class GolfPlayer : MonoBehaviour
     {
         if (other.gameObject.CompareTag("SpeedB")) // checks if tag of game objects for SpeedB
         {
+            boosting = true;
+            speed = 10;
             Debug.Log("picked up");
-            other.gameObject.SetActive(false); // disables game object containing the tag
+            other.gameObject.SetActive(false); // disables speedb object
         }
         if (other.gameObject.CompareTag("Hole"))
         {
             Debug.Log("Hole potted! Proceed to Next level!");
 
         }
+        
     }
 
 
-private void DrawLine(Vector3 worldPoint)
+    private void DrawLine(Vector3 worldPoint)
     {     
             Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);  
             Vector3[] positions = { transform.position, horizontalWorldPoint };
