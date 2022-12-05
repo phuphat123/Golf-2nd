@@ -17,6 +17,9 @@ public class GolfPlayer : MonoBehaviour
     private float boostTimer;
     private bool boosting;
 
+
+    private Vector3 prev;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -39,17 +42,12 @@ public class GolfPlayer : MonoBehaviour
             rb.velocity = rb.velocity * 0.9995f;
         }
 
-        if (boosting)
+        if (transform.position.y < -5)
         {
-            boostTimer += Time.deltaTime;
-            if(boostTimer >= 3)
-            {
-                speed = 3;
-                boostTimer = 0;
-                boosting = false;
-            }
+            transform.position = new Vector3(prev.x, prev.y, prev.z);
+            Stop();
         }
-        
+
     }
 
 
@@ -59,6 +57,7 @@ public class GolfPlayer : MonoBehaviour
         {
             Stop();
         }
+        
 
 
     }
@@ -66,7 +65,9 @@ public class GolfPlayer : MonoBehaviour
 
     
 
-    private void Stop() {
+    public void Stop() {
+        prev = transform.position;
+        Debug.Log(prev);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;

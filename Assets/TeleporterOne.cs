@@ -6,7 +6,7 @@ public class TeleporterOne : MonoBehaviour
 {
     [SerializeField] private Transform player;
     [SerializeField] private Transform TpPoint1;
-
+    public GameObject ball;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -14,6 +14,7 @@ public class TeleporterOne : MonoBehaviour
         {
 
             player.transform.position = TpPoint1.transform.position;
+            ball.GetComponent<GolfPlayer>().Stop();
         }
 
     }
