@@ -10,7 +10,8 @@ public class CameraFollow : MonoBehaviour
     private Vector3 Origin;
     private Vector3 Difference;
     private Vector3 ResetCamera;
-    void Active()
+    
+    void awake()
     {
         
     }
@@ -24,7 +25,16 @@ public class CameraFollow : MonoBehaviour
     {
 
         transform.position = new Vector3(player.position.x + offset.x, player.position.y + offset.y, player.position.z + offset.z); // Camera follows the player with specified offset position
-        
+        // Check if the right mouse button is held down
+        if (Input.GetMouseButton(1))
+        {
+            // Get the movement of the mouse in x and y direction
+            float x = Input.GetAxis("Mouse X");
+            float y = Input.GetAxis("Mouse Y");
+
+            // Rotate the camera based on the movement of the mouse
+            transform.Rotate(-y, x, 0);
+        }                                                                                                                            
     }
         
 
