@@ -55,10 +55,11 @@ public class GolfPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb.velocity.magnitude < 0.2f)
+        if (rb.velocity.magnitude < 0.2f && onRamp == false)
         {
             Stop();
         }
+
 
     }
 
@@ -70,6 +71,8 @@ public class GolfPlayer : MonoBehaviour
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
     }
+
+    bool onRamp;
     // collision trigger 
     void OnTriggerEnter(Collider other)
     {
@@ -85,7 +88,15 @@ public class GolfPlayer : MonoBehaviour
             Debug.Log("Hole potted! Proceed to Next level!");
 
         }
-        
+        if (other.gameObject.CompareTag("Ramp")) {
+            onRamp = true;
+            Debug.Log("onRamp true");
+            Invoke("setBoolRamp",1);
+        }
+
+    }
+    void setBoolRamp() {
+        onRamp = false;
     }
 
 
