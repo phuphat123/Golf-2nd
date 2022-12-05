@@ -97,6 +97,7 @@ public class GolfPlayer : MonoBehaviour
     }
     void setBoolRamp() {
         onRamp = false;
+        Debug.Log("onRamp false");
     }
 
 
