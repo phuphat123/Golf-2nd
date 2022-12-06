@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class GolfPlayer : MonoBehaviour
 {
     [SerializeField] private float shotPower;
     [SerializeField]private LineRenderer lineRenderer;
+    [SerializeField] private float maxPower;
     private bool isIdle;
     private bool ToggleAim;
     private Rigidbody rb;
@@ -101,11 +103,15 @@ public class GolfPlayer : MonoBehaviour
 
 
     private void DrawLine(Vector3 worldPoint)
-    {     
-            Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);  
-            Vector3[] positions = { transform.position, horizontalWorldPoint };
-            lineRenderer.SetPositions(positions);
-            lineRenderer.enabled = true;
+    {
+            
+
+        Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
+        Vector3[] positions = { transform.position, horizontalWorldPoint };
+        lineRenderer.SetPositions(positions);
+        lineRenderer.enabled = true;
+
+
     }
 
     private void OnMouseDown() //if mouse clicked on ball and if it's not moving, toggle the aim lines
