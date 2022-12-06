@@ -20,12 +20,13 @@ public class GolfPlayer : MonoBehaviour
     private bool boosting;
 
     public float rotationSpeed = 50.0f;
-
-
-
-
     private Vector3 prev;
 
+    
+    
+    
+    
+    
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -35,24 +36,31 @@ public class GolfPlayer : MonoBehaviour
         speed = 3;
         boostTimer = 0;
         boosting = false;
+        
+        
     }
 
-
+    
+    
     private void Update()
     {
+        
         if (rb.velocity.magnitude < 0.2f)
         {
+            
+            
             ProcessAim();
+
         }
         else
         {
-            rb.velocity = rb.velocity * 0.9995f;
+            rb.velocity = rb.velocity * 0.9995f;    //deceleration across frames
         }
 
         if (transform.position.y < -5)
         {
             transform.position = new Vector3(prev.x, prev.y, prev.z);
-            Stop();
+            Stop();  //respawn function
         }
 
         
@@ -64,9 +72,10 @@ public class GolfPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (rb.velocity.magnitude < 0.2f && onRamp == false)
+        if (rb.velocity.magnitude < 0.2f && onRamp == false) //ramp detection
         {
-            Stop();
+        Stop();
+            
         }
         
 
