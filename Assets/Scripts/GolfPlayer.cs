@@ -72,6 +72,11 @@ public class GolfPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
+        rb.velocity += Physics.gravity * Time.fixedDeltaTime; // In PhysX, Acceleration ignores mass
+        float rigidbodyDrag = Mathf.Clamp01(1.0f - (rb.drag * Time.fixedDeltaTime));
+        rb.velocity *= rigidbodyDrag;
+        transform.position += rb.velocity * Time.fixedDeltaTime;
+
         if (rb.velocity.magnitude < 0.2f && onRamp == false) //ramp detection
         {
         Stop();

@@ -3498,8 +3498,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4fecae2cfbb046d4389f8a77a1774175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cam: {fileID: 963194227}
   offset: {x: 0.8, y: 1, z: -1}
   player: {fileID: 1643855232}
+  sensitivity: 720
 --- !u!4 &969261665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3551927897426298476, guid: 21b559fa851bf9e4ebe547c76d670b09,
@@ -5676,6 +5678,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shotPower: 230
   lineRenderer: {fileID: 645379691}
+  maxPower: 0.5
   speed: 0
   rotationSpeed: 50
 --- !u!1001 &1696628025
@@ -7255,7 +7258,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 9da066ff50283b249a1d26901f7c85db,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6.09
+      value: 6.101722
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 9da066ff50283b249a1d26901f7c85db,
         type: 3}

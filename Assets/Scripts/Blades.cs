@@ -13,6 +13,14 @@ public class Blades : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Rotate(0f, 0f, 0.3f, Space.Self);
+        
+
+        if (this.gameObject.tag == "Spin")
+        {
+            transform.Rotate(0f, 0.6f, 0f, Space.Self);
+        }
+        else {
+            transform.Rotate(0f, 0f, 0.3f, Space.Self);
+        }
     }
 }
