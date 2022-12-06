@@ -11,8 +11,7 @@ public class GolfPlayer : MonoBehaviour
     [SerializeField] private float shotPower;
     [SerializeField]private LineRenderer lineRenderer;
     [SerializeField] private float maxPower;
-    private bool isIdle;
-    private bool ToggleAim;
+    
     private Rigidbody rb;
 
     public float speed;
@@ -22,11 +21,15 @@ public class GolfPlayer : MonoBehaviour
     public float rotationSpeed = 50.0f;
     private Vector3 prev;
 
-    
-    
-    
-    
-    
+    [Header("Debug")]
+    public float currentVelocity;
+    [SerializeField]private bool isIdle;
+    [SerializeField]private bool ToggleAim;
+    [SerializeField]private bool onRamp;
+
+
+
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -44,7 +47,11 @@ public class GolfPlayer : MonoBehaviour
     
     private void Update()
     {
+        currentVelocity = rb.velocity.magnitude;
+
+
         
+
         if (rb.velocity.magnitude < 0.2f)
         {
             
@@ -72,10 +79,7 @@ public class GolfPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity += Physics.gravity * Time.fixedDeltaTime; // In PhysX, Acceleration ignores mass
-        float rigidbodyDrag = Mathf.Clamp01(1.0f - (rb.drag * Time.fixedDeltaTime));
-        rb.velocity *= rigidbodyDrag;
-        transform.position += rb.velocity * Time.fixedDeltaTime;
+        
 
         if (rb.velocity.magnitude < 0.2f && onRamp == false) //ramp detection
         {
@@ -87,18 +91,18 @@ public class GolfPlayer : MonoBehaviour
 
     }
 
-
+    
     
 
     public void Stop() {
         prev = transform.position;
-        Debug.Log(prev);
+        Debug.Log("Previous Location: " + prev);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
     }
 
-    bool onRamp;
+    
     // collision trigger 
     void OnTriggerEnter(Collider other)
     {
@@ -106,26 +110,29 @@ public class GolfPlayer : MonoBehaviour
         if (other.gameObject.CompareTag("Ramp")) {
             onRamp = true;
             Debug.Log("onRamp true");
-            Invoke("setBoolRamp",1);
+            
         }
 
     }
-    void setBoolRamp() {
-        onRamp = false;
-        Debug.Log("onRamp false");
-    }
 
-
-    private void DrawLine(Vector3 worldPoint)
+    private void OnTriggerExit(Collider other)
     {
+        if (other.gameObject.CompareTag("Ramp"))
+        {
+            onRamp = false;
+            Debug.Log("onRamp false");
             
+        }
+    }
+    
 
+
+    private void DrawLine(Vector3 worldPoint)   //draws line between ball and mouse
+    {
         Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
         Vector3[] positions = { transform.position, horizontalWorldPoint };
         lineRenderer.SetPositions(positions);
         lineRenderer.enabled = true;
-
-
     }
 
     private void OnMouseDown() //if mouse clicked on ball and if it's not moving, toggle the aim lines
@@ -136,12 +143,13 @@ public class GolfPlayer : MonoBehaviour
         }
     }
 
-    private void ProcessAim() {     
+    private void ProcessAim() {
+        Debug.Log("Processing Aim");
         if (!ToggleAim || !isIdle) {
             return;         //if ball is not clicked, and ball is moving, don't do anything
         }
         Vector3? worldPoint = CastMouseClickRay();
-
+        Debug.Log("worldPoint: " + worldPoint);
         if (!worldPoint.HasValue)
         {
             return;
@@ -158,10 +166,6 @@ public class GolfPlayer : MonoBehaviour
     }
 
     private void Shoot(Vector3 worldPoint) {
-
-        
-
-
         ToggleAim = false;
         isIdle = false;
         lineRenderer.enabled = false;
@@ -173,9 +177,6 @@ public class GolfPlayer : MonoBehaviour
 
         rb.AddForce(direction * strength * shotPower);
         Debug.Log(rb.velocity.magnitude);
-
-        
-       
     }
 
     private Vector3? CastMouseClickRay() {
