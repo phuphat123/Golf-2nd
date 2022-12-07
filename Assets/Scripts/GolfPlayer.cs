@@ -28,7 +28,7 @@ public class GolfPlayer : MonoBehaviour
     [SerializeField]private bool onRamp;
     [SerializeField] private bool Grounded;
     [SerializeField] private Material m;
-
+    [SerializeField]private bool initShotbool;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -83,6 +83,10 @@ public class GolfPlayer : MonoBehaviour
             return;
         }
 
+        if (initShotbool == true) {
+            return;
+        }
+
         if (rb.velocity.magnitude < 0.2f && onRamp == false) //ramp detection
         {
         Stop();
@@ -96,7 +100,12 @@ public class GolfPlayer : MonoBehaviour
 
     
     
+    IEnumerator initShot() {
+        initShotbool = true;
 
+        yield return new WaitForSecondsRealtime(1);
+        initShotbool = false; 
+    }
     public void Stop() {
         prev = transform.position;
         Debug.Log("Previous Location: " + prev);
@@ -190,6 +199,8 @@ public class GolfPlayer : MonoBehaviour
     }
 
     private void Shoot(Vector3 worldPoint) {
+
+        StartCoroutine(initShot());
         ToggleAim = false;
         isIdle = false;
         lineRenderer.enabled = false;
