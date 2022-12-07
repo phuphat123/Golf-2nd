@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+
 [RequireComponent(typeof(AudioSource))]
 public class Ambience : MonoBehaviour
 {
@@ -14,7 +16,7 @@ public class Ambience : MonoBehaviour
     // The interval of time (in seconds) that the sound will be played.
     public float interval = 3.0f;
 
-
+    public AudioMixer ambiMixer;
     
     // Private variables
     // A modifier that will prevent the script from running in the event of an error
@@ -72,4 +74,13 @@ public class Ambience : MonoBehaviour
             }
         }
     }
+
+    // ambience volume mixer
+    public void SetVolume2(float volume)
+    {
+        Debug.Log(volume);
+        ambiMixer.SetFloat("volume2", volume);
+    }
+
+
 }

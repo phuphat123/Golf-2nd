@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer mainMixer;
+    
     public Dropdown resDropdown;
     Resolution[] resolutions; // creating an array for resolutions
 
@@ -19,13 +20,13 @@ public class SettingsMenu : MonoBehaviour
         List<string> options = new List<string>(); //creating list for the all the resolutions
         int currentResolutionIndex = 0;
         // loops through all resolutions in the array
-        for (int i = 0;i < resolutions.Length; i++)
+        for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + "x" + resolutions[i].height; // each element creating string for width and length of resolution 
             options.Add(option); // adds res options to list 
             // checks for resolution of the users screen by comparing width and height
             if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)   
+                resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
@@ -51,7 +52,7 @@ public class SettingsMenu : MonoBehaviour
         mainMixer.SetFloat("volume", volume);
     }
     // graphic settings
-    public void SetQuality (int graphicsIndex) 
+    public void SetQuality(int graphicsIndex)
     {
         QualitySettings.SetQualityLevel(graphicsIndex);
     }

@@ -17,7 +17,7 @@ public class Bounce : MonoBehaviour
     
     float amplitudeY = 0.1f;
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         index += Time.deltaTime;
         y = Mathf.Abs(amplitudeY * Mathf.Sin(index));
