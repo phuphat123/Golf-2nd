@@ -53,7 +53,7 @@ public class GolfPlayer : MonoBehaviour
 
         
 
-        if (rb.velocity.magnitude < 0.2f)
+        if (rb.velocity.magnitude < 0.15f)
         {
             
             
@@ -97,7 +97,7 @@ public class GolfPlayer : MonoBehaviour
             return;
         }
 
-        if (rb.velocity.magnitude < 0.2f && onRamp == false) //ramp detection
+        if (rb.velocity.magnitude < 0.15f && onRamp == false) //ramp detection
         {
         Stop();
             
@@ -137,6 +137,8 @@ public class GolfPlayer : MonoBehaviour
             Debug.Log("onRamp true");
             
         }
+
+       
         
  
     }

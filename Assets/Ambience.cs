@@ -14,7 +14,7 @@ public class Ambience : MonoBehaviour
     public bool playAtStartup;
 
     // The interval of time (in seconds) that the sound will be played.
-    public float interval = 3.0f;
+    public float interval;
 
     public AudioMixer ambiMixer;
     
@@ -29,7 +29,7 @@ public class Ambience : MonoBehaviour
     private bool playedAtStartup = false;
     public AudioSource _as;
     public AudioClip[] audioClipArray;
-
+    [SerializeField] private int randomDebug;
     // Use this for initialization
 
     
@@ -51,9 +51,14 @@ public class Ambience : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
         if (!disableScript)
         {
-            int rand = Random.Range(0, 3);
+            int rand = Random.Range(0, audioClipArray.Length);
+            Debug.Log("Random: " + rand);
+
+            randomDebug = rand;
             // Play the sound when the scene starts
             if (playAtStartup) {
                 _as.clip = audioClipArray[rand];
@@ -68,6 +73,7 @@ public class Ambience : MonoBehaviour
             if (trackedTime >= interval)
             {
                 // Play the sound, reset the timer
+                randomDebug = rand;
                 _as.clip = audioClipArray[rand];
                 _as.PlayOneShot(_as.clip);
                 trackedTime = 0.0f;

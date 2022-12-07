@@ -9265,6 +9265,8 @@ MonoBehaviour:
   Grounded: 0
   m: {fileID: 0}
   initShotbool: 0
+  shootSound: {fileID: 8300000, guid: 22ad2e44041f2c449bb589f79dde895b, type: 3}
+  stopSound: {fileID: 8300000, guid: 67716e8ee61842c4b9f0dd34d2778168, type: 3}
 --- !u!1 &1666635088
 GameObject:
   m_ObjectHideFlags: 0
