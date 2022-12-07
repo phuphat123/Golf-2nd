@@ -11,7 +11,7 @@ public class Blades : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         
 
@@ -20,7 +20,7 @@ public class Blades : MonoBehaviour
             transform.Rotate(0f, 0.6f, 0f, Space.Self);
         }
         else {
-            transform.Rotate(0f, 0f, 0.3f, Space.Self);
+            transform.Rotate(0f, 0f, 0.8f, Space.Self);
         }
     }
 }
