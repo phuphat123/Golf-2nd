@@ -26,7 +26,6 @@ public class Ambience : MonoBehaviour
     private float trackedTime = 0.0f;
 
     // Tracks to see if we've played this at startup.
-    private bool playedAtStartup = false;
     public AudioSource _as;
     public AudioClip[] audioClipArray;
 

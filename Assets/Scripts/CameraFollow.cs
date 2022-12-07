@@ -20,7 +20,6 @@ public class CameraFollow : MonoBehaviour
     }
 
     // Update is called once per frame
-    private bool drag = false;
 
     public Vector3 offset;
     
