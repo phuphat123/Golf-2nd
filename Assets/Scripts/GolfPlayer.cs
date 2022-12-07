@@ -26,9 +26,8 @@ public class GolfPlayer : MonoBehaviour
     [SerializeField]private bool isIdle;
     [SerializeField]private bool ToggleAim;
     [SerializeField]private bool onRamp;
-
-
-
+    [SerializeField] private bool Grounded;
+    [SerializeField] private Material m;
 
     private void Awake()
     {
@@ -79,13 +78,17 @@ public class GolfPlayer : MonoBehaviour
 
     private void FixedUpdate()
     {
-        
+
+        if (Grounded == false) {
+            return;
+        }
 
         if (rb.velocity.magnitude < 0.2f && onRamp == false) //ramp detection
         {
         Stop();
             
         }
+        
         
 
 
@@ -112,8 +115,11 @@ public class GolfPlayer : MonoBehaviour
             Debug.Log("onRamp true");
             
         }
-
+        
+ 
     }
+
+     
 
     private void OnTriggerExit(Collider other)
     {
@@ -121,10 +127,28 @@ public class GolfPlayer : MonoBehaviour
         {
             onRamp = false;
             Debug.Log("onRamp false");
-            
+            Grounded = false;
+
+        }
+        
+        
+        
+    }
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.tag == "Untagged") {
+            Grounded = true;
+        }
+
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Untagged")
+        {
+            Grounded = false;
         }
     }
-    
+
 
 
     private void DrawLine(Vector3 worldPoint)   //draws line between ball and mouse
