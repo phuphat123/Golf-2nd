@@ -50,6 +50,7 @@ public class Pause : MonoBehaviour
         
 
     }
+   
 
     // Exits game 
     public void QuitGame()
