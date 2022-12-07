@@ -29,6 +29,8 @@ public class GolfPlayer : MonoBehaviour
     [SerializeField] private bool Grounded;
     [SerializeField] private Material m;
     [SerializeField]private bool initShotbool;
+
+    public AudioClip shootSound, stopSound;
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -74,7 +76,15 @@ public class GolfPlayer : MonoBehaviour
 
     }
 
-
+    private bool played;
+    void checkStopSound() {
+        if (isIdle && played == false)
+        {
+            AudioSource.PlayClipAtPoint(stopSound, transform.position);
+            played = true;
+        }
+        
+    }
 
     private void FixedUpdate()
     {
@@ -107,11 +117,14 @@ public class GolfPlayer : MonoBehaviour
         initShotbool = false; 
     }
     public void Stop() {
+
         prev = transform.position;
         Debug.Log("Previous Location: " + prev);
         rb.velocity = Vector3.zero;
         rb.angularVelocity = Vector3.zero;
         isIdle = true;
+        checkStopSound();
+
     }
 
     
@@ -176,6 +189,8 @@ public class GolfPlayer : MonoBehaviour
         }
     }
 
+
+
     private void ProcessAim() {
         Debug.Log("Processing Aim");
         if (!ToggleAim || !isIdle) {
@@ -199,10 +214,13 @@ public class GolfPlayer : MonoBehaviour
     }
 
     private void Shoot(Vector3 worldPoint) {
-
+        
+        AudioSource.PlayClipAtPoint(shootSound, transform.position);
+        
         StartCoroutine(initShot());
         ToggleAim = false;
         isIdle = false;
+        played = false;
         lineRenderer.enabled = false;
         Vector3 horizontalWorldPoint = new Vector3(worldPoint.x, transform.position.y, worldPoint.z);
         Vector3 direction = (-horizontalWorldPoint - -transform.position).normalized;   // direction vector
