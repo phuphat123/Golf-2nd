@@ -48,7 +48,7 @@ public class SettingsMenu : MonoBehaviour
     public void SetVolume(float volume)
     {
         Debug.Log(volume);
-        mainMixer.SetFloat("volume1", volume);
+        mainMixer.SetFloat("volume", volume);
     }
     // graphic settings
     public void SetQuality (int graphicsIndex) 
