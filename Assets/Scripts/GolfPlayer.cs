@@ -14,9 +14,7 @@ public class GolfPlayer : MonoBehaviour
     
     private Rigidbody rb;
 
-    public float speed;
-    private float boostTimer;
-    private bool boosting;
+    
 
     public float rotationSpeed = 50.0f;
     private Vector3 prev;
@@ -37,9 +35,7 @@ public class GolfPlayer : MonoBehaviour
         ToggleAim = false;
         lineRenderer.enabled = false;
         rb.maxAngularVelocity = 1000;
-        speed = 3;
-        boostTimer = 0;
-        boosting = false;
+        
         
         
     }
