@@ -41,7 +41,7 @@ public class SettingsMenu : MonoBehaviour
 
     }
     // checks if users screen is in fullscreen
-    void SetFullscreen(bool isFullscreen)
+    public void SetFullscreen(bool isFullscreen)
     {
         Screen.fullScreen = isFullscreen;
     }
