@@ -11,7 +11,7 @@ public class GolfPlayer : MonoBehaviour
     [SerializeField] private float shotPower;
     [SerializeField]private LineRenderer lineRenderer;
     [SerializeField] private float maxPower;
-    
+    [SerializeField] private LayerMask m_golfDragLayerTarget;
     private Rigidbody rb;
 
     
@@ -236,7 +236,7 @@ public class GolfPlayer : MonoBehaviour
         Vector3 worldMousePosFar = Camera.main.ScreenToWorldPoint(screenMousePosFar);
         Vector3 worldMousePosNear = Camera.main.ScreenToWorldPoint(screenMousePosNear);
         RaycastHit hit;
-        if (Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, float.PositiveInfinity))
+        if (Physics.Raycast(worldMousePosNear, worldMousePosFar - worldMousePosNear, out hit, float.PositiveInfinity, m_golfDragLayerTarget))
         {
             return hit.point;
         }

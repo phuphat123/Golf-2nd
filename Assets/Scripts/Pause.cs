@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.SocialPlatforms;
 
 public class Pause : MonoBehaviour
 {
@@ -45,10 +46,8 @@ public class Pause : MonoBehaviour
     // Sets scene to 0 which is the main menu
     public void LoadMenu()
     {
-
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
-        
-
     }
    
 
