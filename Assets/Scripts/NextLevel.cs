@@ -65,9 +65,13 @@ public class NextLevel : MonoBehaviour
     public void LoadNextLevel() {
 
 
-        if (SceneManager.sceneCount < SceneManager.GetActiveScene().buildIndex + 1)
+        if (SceneManager.sceneCountInBuildSettings > SceneManager.GetActiveScene().buildIndex + 1)
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            Destroy(completionMusic);
+        }
+        else {
+            SceneManager.LoadScene(0);
             Destroy(completionMusic);
         }
         
