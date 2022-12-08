@@ -8,20 +8,26 @@ public class Pause : MonoBehaviour
 {
     public static bool isGamePaused = false;
     [SerializeField] GameObject pauseMenu; //allows access outside of code
-  
+    
+     void Start()
+    {
+        
+    }
     // Update is called once per frame
     void Update()
     {
        // if esc is pressed and game is paused it resumes game else pauses game
         if (Input.GetKeyDown(KeyCode.Escape)) 
-        { 
-            if(isGamePaused)
+        {
+            if (isGamePaused)
             {
                 ResumeGame();
+                
             }
-            else
-            {
+            else{
                 PauseGame();
+
+                
             }
         }
     }

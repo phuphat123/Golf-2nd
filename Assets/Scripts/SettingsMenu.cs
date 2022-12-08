@@ -7,13 +7,14 @@ using UnityEngine.UI;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer mainMixer;
-    
+
     public Dropdown resDropdown;
     Resolution[] resolutions; // creating an array for resolutions
-
+    
     // Start is called before the first frame update
     private void Start()
     {
+        
         resolutions = Screen.resolutions;
         resDropdown.ClearOptions(); // clears resolutions in the dropdown before adding users res
 
@@ -55,5 +56,12 @@ public class SettingsMenu : MonoBehaviour
     public void SetQuality(int graphicsIndex)
     {
         QualitySettings.SetQualityLevel(graphicsIndex);
+    }
+
+    public void disableMenu() {
+        
+    }
+    public void enableMenu() {
+        
     }
 }
