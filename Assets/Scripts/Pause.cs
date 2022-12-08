@@ -51,7 +51,7 @@ public class Pause : MonoBehaviour
     // Sets scene to 0 which is the main menu
     public void LoadMenu()
     {
-
+        Time.timeScale = 1f;
         SceneManager.LoadScene(0);
         
 
