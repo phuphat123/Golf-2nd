@@ -34,7 +34,7 @@ public class GolfPlayer : MonoBehaviour
     public AudioClip shootSound, stopSound;
     private void Awake()
     {
-        fps = 60;
+        fps = 144;
         rb = GetComponent<Rigidbody>();
         ToggleAim = false;
         lineRenderer.enabled = false;
@@ -63,7 +63,7 @@ public class GolfPlayer : MonoBehaviour
         }
         else
         {
-            rb.velocity = rb.velocity * 0.9995f;    //deceleration across frames
+            rb.velocity = rb.velocity * 0.9995f ;    //deceleration across frames
         }
 
         if (transform.position.y < -5)
