@@ -73,6 +73,9 @@ public class NextLevel : MonoBehaviour
         
         
     }
+    public void onlySound() {
+        AudioSource.PlayClipAtPoint(completionMusic, transform.position);
+    }
 
     public void TurnTheGUIOn()
     {

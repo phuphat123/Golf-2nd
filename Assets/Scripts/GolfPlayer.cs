@@ -8,19 +8,22 @@ using UnityEngine;
 
 public class GolfPlayer : MonoBehaviour
 {
+    [SerializeField] private int fps;
+    
+    
     [SerializeField] private float shotPower;
     [SerializeField]private LineRenderer lineRenderer;
     [SerializeField] private float maxPower;
     
     private Rigidbody rb;
 
-    
+
 
     public float rotationSpeed = 50.0f;
     private Vector3 prev;
-
     [Header("Debug")]
     public float currentVelocity;
+
     [SerializeField]private bool isIdle;
     [SerializeField]private bool ToggleAim;
     [SerializeField]private bool onRamp;
@@ -31,6 +34,7 @@ public class GolfPlayer : MonoBehaviour
     public AudioClip shootSound, stopSound;
     private void Awake()
     {
+        fps = 60;
         rb = GetComponent<Rigidbody>();
         ToggleAim = false;
         lineRenderer.enabled = false;
@@ -44,6 +48,7 @@ public class GolfPlayer : MonoBehaviour
     
     private void Update()
     {
+        Application.targetFrameRate = fps;
         currentVelocity = rb.velocity.magnitude;
 
 

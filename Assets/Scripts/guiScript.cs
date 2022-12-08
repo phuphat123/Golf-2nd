@@ -30,6 +30,7 @@ public class guiScript : MonoBehaviour
         else {
             if (GUI.Button(new Rect(Screen.width / 2, Screen.height / 2, 200, 80), "Main Menu"))
             {
+                nextlvl.onlySound();
                 SceneManager.LoadScene(0);
             }
         }
