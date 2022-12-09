@@ -2073,8 +2073,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 91}
-  m_SizeDelta: {x: 200, y: 60}
+  m_AnchoredPosition: {x: 20, y: -16}
+  m_SizeDelta: {x: 572.1019, y: 341.223}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &813059978
 MonoBehaviour:
@@ -2099,7 +2099,23 @@ MonoBehaviour:
   m_text: '1) Drag to aim and shoot the ball into the hole
 
 
-    2) Powerups ...
+    2) There are 4 Power
+    Up/Debuff objects:
+
+
+    -Speed Boost (Rocket) increases speed of the golf ball
+
+    -Size
+    Increase (Green Arrow)  increases Size of the golf ball
+
+    -Reverse Shot (Exclamation
+    mark)  Reverses the shot of ball
+
+    -Random (Question mark) Receive any out
+    of the 3 other power ups
+
+
+    3. Complete level 1 and 2 to complete the game!
 
 '
   m_isRightToLeft: 0
@@ -2164,7 +2180,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: 0, z: 0, w: -21.752441}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -3300,10 +3316,10 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: 3b147a4a010cc4849beca61334fb62ea,
     type: 2}
-  m_audioClip: {fileID: 8300000, guid: 42a4fcf3b306e4145aff34c7639c64af, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 287a6de2bc622d94bb5123cc41edf2a5, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
-  m_Pitch: 1
+  m_Volume: 0.543
+  m_Pitch: 0.97
   Loop: 0
   Mute: 0
   Spatialize: 0
